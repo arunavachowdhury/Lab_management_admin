@@ -22,9 +22,9 @@ class ISStandard extends Model
         return $this->hasMany(Test::class);
     }
 
-    public function test_Items()
+    public function testItems()
     {
-        return $this->hasMany(TestItem::class);
+        return $this->hasMany(TestItem::class,  'is_standard_id');
     }
 
 

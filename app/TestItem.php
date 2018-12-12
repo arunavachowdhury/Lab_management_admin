@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TestItem extends Model
 {
+    protected $table = 'test_items';
+
     public $fillable = [
         'name',
         'sample_id',

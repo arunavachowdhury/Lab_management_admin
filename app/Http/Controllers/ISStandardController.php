@@ -66,7 +66,7 @@ class ISStandardController extends Controller
      */
     public function show($id)
     {
-        // $testItems = ISStandard::findOrFail($id)->with('test_Items')->get();
+        // $isstandard = ISStandard::findOrFail($id);
         // $testItems = $isstandard->testItems;
         // dd($testItems);
     }

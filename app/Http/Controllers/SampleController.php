@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sample;
+use App\ISStandard;
+use App\TestItem;
 
 class SampleController extends Controller
 {
@@ -65,11 +67,6 @@ class SampleController extends Controller
 
         // $testItems = $isstandards->testItems;
         // dd($testItems);
-
-        // $testItems = DB::table('test_items')
-        //                 ->where('sample_id', $sample->id)
-        //                 ->where('is_standard_id', $isstandards->id)
-        //                 ->get(); 
                         
 
         return view('sample.show')->with(['sample' => $sample, 'isstandards' => $isstandards, 'testItems' => $testItems]);
