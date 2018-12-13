@@ -11,7 +11,7 @@ use Session;
 use Validator;
 use App\TestMethod;
 
-class TestItemController extends Controller
+class TestMethodController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -97,6 +97,8 @@ class TestItemController extends Controller
         $uom = $testMethod->uom;
         $testItem = $testMethod->testItem;
         $sample = $testItem->sample;
+
+
     }
 
     /**
