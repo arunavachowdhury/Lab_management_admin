@@ -24,28 +24,28 @@
     <!-- <h4 class="c-grey-900 mB-20">Test Method Specification against which tests are performed</h4> -->
     <!-- <div class="mT-30"> -->
         <!-- <ul class="list-group"> -->
-            @foreach($isstandards as $isstandard)
+            @foreach($testItems as $testItem)
             <!-- <li class="list-group-item list-group-item-action" value="{{$isstandard->id}}" id=isstandard_id>{{$isstandard->value}}</li> -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                        <h4 class="c-grey-900 mB-20">Test Method : {{$isstandard->value}}</h4>
+                        <h4 class="c-grey-900 mB-20">Test Item : {{$testItem->name}}</h4>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th style="min-width: 150px">Test Item</th>
+                                    <th style="min-width: 150px">Test Method</th>
                                     <th style="min-width: 200px">Specified value range</th>
                                     <th>Description</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($isstandard->testItems as $testItem)
+                                @foreach($testItem->testMethods as $testMethod)
                                 <tr>
-                                    <td>{{$testItem->name}}</td>
-                                    <td>{{$testItem->specified_range_from}} {{$testItem->uom->unit}} -
-                                        {{$testItem->specified_range_to}}
-                                        {{$testItem->uom->unit}}</td>
-                                    <td>{{$testItem->description}}</td>
+                                    <td>{{$testMethod->name}}</td>
+                                    <td>{{$testMethod->specified_range_from}} {{$testMethod->uom->unit}} -
+                                        {{$testMethod->specified_range_to}}
+                                        {{$testMethod->uom->unit}}</td>
+                                    <td>{{$testMethod->description}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

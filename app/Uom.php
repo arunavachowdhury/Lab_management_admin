@@ -10,7 +10,7 @@ class Uom extends Model
         'unit',
     ];
     
-    public function testItems() {
-        return $this->hasOne(TestItem::class);
+    public function testMethods() {
+        return $this->hasOne(TestMethod::class, 'uom_id');
     }
 }

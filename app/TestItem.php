@@ -11,20 +11,13 @@ class TestItem extends Model
     public $fillable = [
         'name',
         'sample_id',
-        'is_standard_id',
-        'uom_id',
-        'specified_range_from',
-        'specified_range_to',
         'description',
-        'price'
+        'price',
+        'is_new'
     ];
 
     public function sample() {
         return $this->belongsTo(Sample::class);
-    }
-
-    public function uom() {
-        return $this->belongsTo(Uom::class);
     }
 
     public function job()
@@ -32,8 +25,8 @@ class TestItem extends Model
         return $this->hasOne(Job::class);
     }
 
-    public function isStandard()
+    public function testMethods()
     {
-        return $this->belongsTo(ISStandard::class);
+        return $this->hasMany(TestMethod::class, 'test_item_id');
     }
 }
