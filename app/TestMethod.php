@@ -11,6 +11,7 @@ class TestMethod extends Model
                 'test_items_id',
                 'uom_id',
                 'name',
+                'price',
                 'specified_range_from',
                 'specified_range_to',
                 ];

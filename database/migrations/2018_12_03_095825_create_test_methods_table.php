@@ -18,7 +18,8 @@ class CreateTestMethodsTable extends Migration
 			$table->integer('sample_id')->unsigned();
             $table->integer('test_item_id')->unsigned();
 			$table->integer('uom_id')->unsigned();
-			$table->string('name');
+            $table->string('name');
+            $table->string('price')->nullable();
 			$table->string('specified_range_from')->nullable();
             $table->string('specified_range_to')->nullable();
             $table->timestamps();

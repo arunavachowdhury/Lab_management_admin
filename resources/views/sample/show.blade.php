@@ -20,43 +20,36 @@
 <a href="{{route('sample.edit', ['sample' => $sample->id])}}" class="btn cur-p btn-primary">Edit Sample/Product</a>
 <br>
 <br>
-<!-- <div class="bgc-white p-20 bd"> -->
-    <!-- <h4 class="c-grey-900 mB-20">Test Method Specification against which tests are performed</h4> -->
-    <!-- <div class="mT-30"> -->
-        <!-- <ul class="list-group"> -->
-            @foreach($testItems as $testItem)
-            <!-- <li class="list-group-item list-group-item-action" value="{{$isstandard->id}}" id=isstandard_id>{{$isstandard->value}}</li> -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                        <h4 class="c-grey-900 mB-20">Test Item : {{$testItem->name}}</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th style="min-width: 150px">Test Method</th>
-                                    <th style="min-width: 200px">Specified value range</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($testItem->testMethods as $testMethod)
-                                <tr>
-                                    <td>{{$testMethod->name}}</td>
-                                    <td>{{$testMethod->specified_range_from}} {{$testMethod->uom->unit}} -
-                                        {{$testMethod->specified_range_to}}
-                                        {{$testMethod->uom->unit}}</td>
-                                    <td>{{$testMethod->description}}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        <!-- </ul> -->
-    <!-- </div> -->
-<!-- </div> -->
+
+@foreach($testItems as $testItem)
+<div class="row">
+    <div class="col-md-12">
+        <div class="bgc-white bd bdrs-3 p-20 mB-20">
+            <h4 class="c-grey-900 mB-20">Test Item : {{$testItem->name}}</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="min-width: 150px">Test Method</th>
+                        <th style="min-width: 200px">Specified value range</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($testItem->testMethods as $testMethod)
+                    <tr>
+                        <td>{{$testMethod->name}}</td>
+                        <td>{{$testMethod->specified_range_from}} {{$testMethod->uom->unit}} -
+                            {{$testMethod->specified_range_to}}
+                            {{$testMethod->uom->unit}}</td>
+                        <td>{{$testMethod->description}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endforeach
 <br>
 
 @endsection
