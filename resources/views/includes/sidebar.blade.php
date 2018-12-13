@@ -29,7 +29,6 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{route('sample.index')}}">Product / Material of Test</a></li>
                     <li><a href="{{route('sample.create')}}">+ Add Product / Material of Test</a></li>
-                    <li><a href="{{route('isstandard.create')}}">+ Add IS Standard to Product / Material of Test</a></li>
                     <li><a href="{{route('uom.create')}}">+ Add Unit Of Measurement for Tests</a></li>
                 </ul>
             </li>

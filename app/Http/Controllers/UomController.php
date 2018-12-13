@@ -37,8 +37,10 @@ class UomController extends Controller
     {
         $this->validate($request, ['unit' => 'required']);
 
+        $unit = str_replace("^", "<sup>^</sup>", $request->unit);
+
         Uom::create([
-            'unit' => $request->unit,
+            'unit' => $unit,
         ]);
 
         return redirect()->back();
@@ -52,7 +54,8 @@ class UomController extends Controller
      */
     public function show($id)
     {
-        //
+//        $unit = Uom::findOrFail($id);
+//        return $unit;
     }
 
     /**
