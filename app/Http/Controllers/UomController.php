@@ -37,7 +37,19 @@ class UomController extends Controller
     {
         $this->validate($request, ['unit' => 'required']);
 
-        $unit = str_replace("^", "<sup>^</sup>", $request->unit);
+        preg_match_all('/[a-z]+\^?-?([0-9]{1,10})?/', $request->unit, $output_array);
+        $unit = '';
+        foreach ($output_array[0] as $output) {
+            if(preg_match('/(?P<power>[0-9]{1,10})/', $output, $output_array_1)) {
+                $new_value = str_replace($output_array_1['power'], '', $output);
+                $new_value = str_replace("^", "<sup>".$output_array_1['power']."</sup>", $new_value);
+                $unit .= $new_value;
+            }
+            else {
+                $unit .= $output;
+            }
+        }
+
 
         Uom::create([
             'unit' => $unit,
