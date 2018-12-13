@@ -17,9 +17,9 @@ class SampleController extends Controller
     public function show($id)
     {
         $sample = Sample::findOrFail($id);
-        $isstandards = $sample->ISStandards;
+        $testItems = $sample->testItems;
 
-        return response()->json(['data' => $isstandards, 'code' => 200]);
+        return response()->json(['data' => $testItems, 'code' => 200]);
     }
 
     /**
