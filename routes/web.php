@@ -1,6 +1,5 @@
 <?php
 
-use App\ISStandard;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +16,7 @@ Route::get('/', 'HomeController@home');
 Route::resource('uom', 'UomController')->middleware(['admin', 'director']);
 
 Route::resource('sample', 'SampleController')->middleware(['admin', 'director']);
-Route::resource('isstandard', 'ISStandardController')->middleware(['admin', 'director']);
+// Route::resource('isstandard', 'ISStandardController')->middleware(['admin', 'director']);
 Route::resource('testmethod', 'TestMethodController')->middleware(['admin', 'director']);
 Route::resource('testitem', 'TestItemController')->middleware(['admin', 'director']);
 // Route::resource('customer', 'CustomerController')->middleware('auth');

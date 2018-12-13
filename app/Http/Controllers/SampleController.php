@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sample;
-use App\ISStandard;
 use App\TestItem;
 
 class SampleController extends Controller
