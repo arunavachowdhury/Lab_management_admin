@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sample;
-use App\Uom;
 use App\TestItem;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -12,15 +11,6 @@ use Validator;
 
 class TestItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,11 +19,11 @@ class TestItemController extends Controller
      */
     public function create()
     {
-        if(Uom::all()->count() == 0) {
-            Session::flash('error', 'You need a Unit of Measurement to add an Test Item');
+        if(Sample::all()->count() == 0) {
+            Session::flash('error', 'You need a Sample/Product to add a Test Item');
             return redirect()->route('uom.create');
         }
-        return view('testitem.create')->with(['samples' => Sample::all()])->with(['uoms' => Uom::all()]);
+        return view('testitem.create')->with(['samples' => Sample::all()])->with(['uoms' => Sample::all()]);
     }
 
     /**
@@ -49,20 +39,12 @@ class TestItemController extends Controller
         $rule = [
             'name' => 'required',
             'sample_id' => 'required',
-            'is_standard_id' => 'required',
-            'uom_id' => 'required',
             'price' => 'required|integer',
-            'specified_range_from' => 'required',
-            'specified_range_to' => 'required',
         ];
 
         $this->validate($request, $rule);
 
-        // dd($request);
-
         $data = $request->all();
-
-        // dd($data);
 
         $testItem = TestItem::create($data);
 
@@ -77,11 +59,6 @@ class TestItemController extends Controller
      */
     public function show($id)
     {
-        // $isstandard = TestItem::findOrFail($id)->isStandard;
-        $testItem = TestItem::findOrfail($id)->with('uom')->get();
-        // dd($isstandard);
-
-        return response()->json(['data' => $testItem]);
     }
 
     /**
@@ -92,7 +69,9 @@ class TestItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $testItem = TestItem::findOrFail($id);
+
+        return view('testitem.edit')->with(['testitem' => $testItem])->with(['samples' => Sample::all()]);
     }
 
     /**
@@ -104,7 +83,19 @@ class TestItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $testItem = TestItem::findOrFail($id);
+        $rule = [
+            'name' => 'string',
+            'sample_id' => 'integer',
+            'price' => 'integer',
+        ];
+
+        $this->validate($request, $rule);
+
+        $testItem->update($request->all());
+
+        return redirect()->route('testitem.show', ['id' => $testItem->id]);
     }
 
     /**
@@ -115,7 +106,10 @@ class TestItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $testItem = TestItem::findOrFail($id);
+        $testItem->delete();
+        
+        Session::flash('success', 'Test Item deleted successfully!');
     }
 
     /**

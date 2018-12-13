@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Add Test Item
+Edit Test Item
 @endsection
 
 @section('content')
@@ -21,15 +21,22 @@ Add Test Item
                         </ul>
                     </div>
                     @endif
-                    <form action="{{route('testitem.store')}}" method="post">
+                    <form action="{{route('testitem.update', ['id' => $testitem->id])}}" method="post">
                         {{csrf_field()}}
                         <div class="row">
+                            <input type="hidden" name="_method" value="put">
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="value">Sample:</label>
                                     <select class="form-control" id="sample_id" name="sample_id">
                                         @foreach($samples as $sample)
-                                        <option value="{{$sample->id}}">{{$sample->name}}</option>
+                                            <option value="{{$sample->id}}" 
+                                                @if($sample->id == $testitem->sample_id)
+                                                    selected 
+                                                @endif 
+                                            >
+                                            {{$sample->name}}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -37,19 +44,21 @@ Add Test Item
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label for="name">Test Item name:</label>
-                                    <input type="text" class="form-control" name="name" id="name">
+                                    <input type="text" class="form-control" name="name" id="name" value="{{$testitem->name}}">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="price">Price:</label>
-                                    <input type="text" class="form-control" name="price" id="price" placeholder="Inr">
+                                    <input type="text" class="form-control" name="price" id="price" placeholder="Inr" value="{{$testitem->price}}">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="description">Description:</label>
-                                    <textarea name="description" id="description" rows="2" class="form-control"></textarea>
+                                    <textarea name="description" id="description" rows="2" class="form-control">
+                                        {{$testitem->description}}
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
