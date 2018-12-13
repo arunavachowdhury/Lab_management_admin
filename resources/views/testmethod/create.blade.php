@@ -11,7 +11,7 @@ Add a Sample/Product
         <div class="bgc-white p-20 bd"> 
             <h6 class="c-grey-900">Add IS Standard to Sample/Product</h6>
             <div class="mT-30">
-            <form action="{{route('isstandard.store')}}" method="post">
+            <form action="{{route('testmethod.store')}}" method="post">
             {{csrf_field()}}
                 <div class="form-group">
                     <label for="value">IS Standard:</label>
