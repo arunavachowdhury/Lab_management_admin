@@ -79,7 +79,8 @@ class ISStandardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $isstandard = ISStandard::findOrFail($id);
+        return view('isstandard.edit')->with('isstandard', $isstandard);
     }
 
     /**

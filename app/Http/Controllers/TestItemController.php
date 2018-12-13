@@ -54,7 +54,6 @@ class TestItemController extends Controller
             'price' => 'required|integer',
             'specified_range_from' => 'required',
             'specified_range_to' => 'required',
-            'description' => 'required'
         ];
 
         $this->validate($request, $rule);

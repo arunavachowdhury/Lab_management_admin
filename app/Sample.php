@@ -11,11 +11,7 @@ class Sample extends Model
         'description'
     ];
 
-    public function isStandards() {
-        return $this->hasMany(ISStandard::class);
-    }
-
-    public function TestItems() {
+    public function testItems() {
         return $this->hasMany(TestItem::class);
     }
 

@@ -61,15 +61,17 @@ class SampleController extends Controller
     {
         $sample = Sample::findOrFail($id);
 
-        $isstandards = $sample->isStandards;
-
         $testItems = $sample->testItems;
+
+        
+
+        // $testItems = $sample->testItems;
 
         // $testItems = $isstandards->testItems;
         // dd($testItems);
                         
 
-        return view('sample.show')->with(['sample' => $sample, 'isstandards' => $isstandards, 'testItems' => $testItems]);
+        return view('sample.show')->with(['sample' => $sample, 'testItems' => $testItems]);
     }
 
     /**
@@ -94,7 +96,6 @@ class SampleController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required',
         ]);
   
         $sample->update($request->all());
