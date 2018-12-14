@@ -30,8 +30,16 @@ class TestMethodController extends Controller
      */
     public function create()
     {
-        if(Uom::all()->count() == 0) {
-            Session::flash('error', 'You need a Unit of Measurement to add an Test Item');
+        if (Sample::all()->count() == 0) {
+            Session::flash('error', 'You need a Sample/Product to add a Test Method');
+            return redirect()->route('sample.create');
+        }
+        elseif(TestItem::all()->count() == 0) {
+            Session::flash('error', 'You need a Test Item to add a Test Method');
+            return redirect()->route('testitem.create');
+        }
+        elseif(Uom::all()->count() == 0 ) {
+            Session::flash('error', 'You need a Unit of Measurement to add an Test Method');
             return redirect()->route('uom.create');
         }
         return view('testmethod.create')->with(['samples' => Sample::all(), 'uoms' => Uom::all()]);
@@ -65,7 +73,7 @@ class TestMethodController extends Controller
         // dd($data);
 
         $testMethod = TestMethod::create($data);
-
+        Session::flash('success', 'Test Method created successfully');
         return redirect()->route('sample.show', ['id' => $testMethod->sample_id]);
     }
 
@@ -122,7 +130,7 @@ class TestMethodController extends Controller
         $this->validate($request, $rule);
 
         $testMethod->update($request->all());
-
+        Session::flash('success', 'Test Method updated successfully');
         return redirect()->route('sample.show', ['id' => $testMethod->sample_id]);
 
 
@@ -140,7 +148,7 @@ class TestMethodController extends Controller
         $testMethod->delete();
 
         Session::flash('success', 'Test Method deleted successfully');
-        redirect()->back();
+        return redirect()->back();
     }
 
     /**

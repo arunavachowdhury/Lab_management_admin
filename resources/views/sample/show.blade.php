@@ -26,33 +26,46 @@
     <div class="col-md-12">
         <div class="bgc-white bd bdrs-3 p-20 mB-20">
             <h4 class="c-grey-900 mB-20">Test Item : {{$testItem->name}}</h4>
+            <a href="{{route('testitem.edit',['id'=> $testItem->id])}}" class="btn cur-p btn-primary">Edit Test Item</a>
+            <hr>
+            <div class="col-sm-2">
+                <form action="{{ route('testitem.destroy', ['id'=> $testItem->id]) }} " method="POST">
+                    <input type="submit" value="Delete Test Item" class="btn btn-danger btn-block">
+                    <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                    {{ method_field('DELETE') }}
+                </form>
+            </div>
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th style="min-width: 150px">Test Method</th>
                         <th style="min-width: 200px">Specified value range</th>
-                        <th>Description</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($testItem->testMethods as $testMethod)
                     <tr>
-                        <td>{{$testMethod->name}}</td>
+                        <td>{{$testMethod->name}}
+                            <a href="{{route('testmethod.edit',['id'=> $testMethod->id])}}" class="btn cur-p btn-primary">Edit
+                                Test Method</a>
+                        </td>
                         <td>{{$testMethod->specified_range_from}} {{$testMethod->uom->unit}} -
                             {{$testMethod->specified_range_to}}
                             {{$testMethod->uom->unit}}</td>
-                        <td>{{$testMethod->description}}</td>
+                        <td>
+                                <form action="{{ route('testmethod.destroy', ['id'=> $testMethod->id]) }} " method="POST">
+                                    <input type="submit" value="Delete Test Method" class="btn btn-danger btn-block">
+                                    <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                                    {{ method_field('DELETE') }}
+                                </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-sm-2">
-                <form action="{{ route('testitem.destroy', $testItem->id) }} " method="POST">
-                        <input type="submit" value="Delete Test Item" class="btn btn-danger btn-block" onclick="return confirm('Are you sure to delete?')">
-                        <input type="hidden" value="{{ csrf_token() }}" name="_token">
-                        {{ method_field('DELETE') }}
-                </form>
-            </div>
+
         </div>
     </div>
 </div>
