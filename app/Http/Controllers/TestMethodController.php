@@ -77,10 +77,6 @@ class TestMethodController extends Controller
      */
     public function show($id)
     {
-        // $isstandard = TestItem::findOrFail($id)->isStandard;
-        // $testItem = TestItem::findOrfail($id)->with('uom')->get();
-        // dd($isstandard);
-
         // return response()->json(['data' => $testItem]);
     }
 
@@ -93,9 +89,13 @@ class TestMethodController extends Controller
     public function edit($id)
     {
         $testMethod = TestMethod::findOrFail($id);
-        $uom = $testMethod->uom;
         $testItem = $testMethod->testItem;
         $sample = $testItem->sample;
+
+        return view('testmethod.edit')->with(['testMethod'=> $testMethod,
+                                            'sample'=> $sample,
+                                            'testItem'=> $testItem,
+                                            'uoms'=> Uom::all()]);
 
 
     }
@@ -109,7 +109,23 @@ class TestMethodController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $testMethod = TestMethod::findOrFail($id);
+
+        $rule = [
+            'sample_id' => 'required',
+            'test_item_id' => 'required',
+            'uom_id' => 'required',
+            'name'=> 'required',
+        ];
+
+        $this->validate($request, $rule);
+
+        $testMethod->update($request->all());
+
+        return redirect()->route('sample.show', ['id' => $testMethod->sample_id]);
+
+
     }
 
     /**
@@ -120,7 +136,11 @@ class TestMethodController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $testMethod = TestMethod::findOrFail($id);
+        $testMethod->delete();
+
+        Session::flash('success', 'Test Method deleted successfully');
+        redirect()->back();
     }
 
     /**
