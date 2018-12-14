@@ -31,6 +31,7 @@
                     <tr>
                         <th style="min-width: 150px">Test Method</th>
                         <th style="min-width: 200px">Specified value range</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,10 +41,18 @@
                         <td>{{$testMethod->specified_range_from}} {{$testMethod->uom->unit}} -
                             {{$testMethod->specified_range_to}}
                             {{$testMethod->uom->unit}}</td>
+                        <td>{{$testMethod->description}}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            <div class="col-sm-2">
+                <form action="{{ route('testitem.destroy', $testItem->id) }} " method="POST">
+                        <input type="submit" value="Delete Test Item" class="btn btn-danger btn-block" onclick="return confirm('Are you sure to delete?')">
+                        <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                        {{ method_field('DELETE') }}
+                </form>
+            </div>
         </div>
     </div>
 </div>
