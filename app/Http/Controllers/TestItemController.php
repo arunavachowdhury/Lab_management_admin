@@ -48,6 +48,7 @@ class TestItemController extends Controller
 
         $testItem = TestItem::create($data);
 
+        Session::flash('success', 'Test Item created successfully');
         return redirect()->route('sample.show', ['id' => $data['sample_id']]);
     }
 
@@ -95,7 +96,9 @@ class TestItemController extends Controller
 
         $testItem->update($request->all());
 
-        return redirect()->route('testitem.show', ['id' => $testItem->id]);
+        Session::flash('success', 'Test Item updated successfully!');
+
+        return redirect()->route('sample.show', ['id' => $testItem->sample_id]);
     }
 
     /**
@@ -114,6 +117,7 @@ class TestItemController extends Controller
         $testItem->delete();
 
         Session::flash('success', 'Test Item deleted successfully!');
+        return redirect()->back();
     }
 
     /**
