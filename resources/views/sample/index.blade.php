@@ -15,7 +15,6 @@ Product / Material of Test
                     <tr>
                         <th style="min-width: 200px">Sample/Product name</th>
                         <th>Description</th>
-                        <!-- <th>Show</th> -->
                         <th>Edit</th>
                     </tr>
                 </thead>
@@ -24,7 +23,6 @@ Product / Material of Test
                     <tr>
                         <td><a href="{{route('sample.show', ['sample' => $sample->id])}}" class="btn btn-success">{{$sample->name}}</a></td>
                         <td>{{$sample->description}}</td>
-                        <!-- <td><a href="{{route('sample.show', ['sample' => $sample->id])}}" class="btn btn-primary">Show</a></td> -->
                         <td><a href="{{route('sample.edit', ['sample' => $sample->id])}}" class="btn btn-primary">Edit</a></td>
                     </tr>
                 @endforeach
