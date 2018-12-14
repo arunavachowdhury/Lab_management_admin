@@ -19,7 +19,7 @@ class TestItemController extends Controller
      */
     public function create()
     {
-        if(Sample::all()->count() == 0) {
+        if (Sample::all()->count() == 0) {
             Session::flash('error', 'You need a Sample/Product to add a Test Item');
             return redirect()->route('uom.create');
         }
@@ -107,42 +107,46 @@ class TestItemController extends Controller
     public function destroy($id)
     {
         $testItem = TestItem::findOrFail($id);
+        // $testItem->delete();
+
+        $testMethods = $testItem->testMethods;
+        $testItem->testMethods()->delete();
         $testItem->delete();
-        
+
         Session::flash('success', 'Test Item deleted successfully!');
     }
 
     /**
      * gives test items for sample and is_standards
      * @param Request $request
-     * 
+     *
      * @return array
      */
-    public function getTestItemsQuery(Request $request) {
+    public function getTestItemsQuery(Request $request)
+    {
         $rules = [
             'sample_id' => 'required',
             'isstandard_id' => 'required'
         ];
         $this->validate($request, $rules);
 
-        if($request->has('sample_id') && $request->has('isstandard_id'))
-        {
-            $testItems = DB::table('test_items')->where('sample_id', $request->sample_id)->where('is_standard_id', $request->isstandard_id)->get(); 
+        if ($request->has('sample_id') && $request->has('isstandard_id')) {
+            $testItems = DB::table('test_items')->where('sample_id', $request->sample_id)->where('is_standard_id', $request->isstandard_id)->get();
             
-            if(empty($testItems)) {
+            if (empty($testItems)) {
                 return response()->json(['data' => '', 'code' => 404]);
             } else {
                 return response()->json(['data' => $testItems]);
             }
         } else {
-            return response()->json(['data' => '', 'code' => 404]); 
-        } 
+            return response()->json(['data' => '', 'code' => 404]);
+        }
     }
 
     public function testItemShow($id)
     {
         $testItems = DB::table('test_items')->where('isstandard_id', $id);
-        if(empty($testItems)) {
+        if (empty($testItems)) {
             return response()->json(['data' => '', 'code' => 404]);
         } else {
             return response()->json(['data' => $testItems]);
