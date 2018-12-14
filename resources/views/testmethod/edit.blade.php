@@ -67,25 +67,3 @@ Add a Sample/Product
 
 @endsection
 
-<!-- @push('scripts')
-<script>
-    $(document).ready(function () {
-        $("#sample_id").on('change click', function () {
-            var value = $(this).val();
-
-            $.get("http://127.0.0.1:8000/api/sample/" + value, function (data) {
-                var content = '';
-                $.each(data.data, function (index, value) {
-                    content += '<option value="' + value.id + '" >' + value.name +
-                        '</option>'
-                });
-
-                $("#test_item_id").html(content);
-
-            });
-        });
-
-    });
-
-</script>
-@endpush -->
