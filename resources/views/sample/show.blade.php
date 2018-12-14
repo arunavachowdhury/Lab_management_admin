@@ -31,7 +31,6 @@
                     <tr>
                         <th style="min-width: 150px">Test Method</th>
                         <th style="min-width: 200px">Specified value range</th>
-                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +40,6 @@
                         <td>{{$testMethod->specified_range_from}} {{$testMethod->uom->unit}} -
                             {{$testMethod->specified_range_to}}
                             {{$testMethod->uom->unit}}</td>
-                        <td>{{$testMethod->description}}</td>
                     </tr>
                     @endforeach
                 </tbody>

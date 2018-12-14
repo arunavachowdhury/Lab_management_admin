@@ -66,8 +66,8 @@ class UomController extends Controller
      */
     public function show($id)
     {
-//        $unit = Uom::findOrFail($id);
-//        return $unit;
+       $unit = Uom::findOrFail($id);
+       return $unit->unit;
     }
 
     /**

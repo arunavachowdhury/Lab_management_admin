@@ -23,14 +23,14 @@ Add a Sample/Product
                 </div>
                 <div class="form-group">
                     <label for="value">Test Item:</label>
-                    <select class="form-control" id="testItem" name="testItem">
+                    <select class="form-control" id="test_item_id" name="test_item_id">
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="value">Unit of measurement:</label>
-                    <select class="form-control" id="uom" name="uom">
+                    <select class="form-control" id="uom_id" name="uom_id">
                         @foreach($uoms as $uom)
-                            <option value="{{$uom->id}}}">{!! $uom->unit !!}</option>
+                            <option value="{{ $uom->id }}">{!! $uom->unit !!}</option>
                         @endforeach
                     </select>
                 </div>
@@ -73,7 +73,7 @@ Add a Sample/Product
                         '</option>'
                 });
 
-                $("#testItem").html(content);
+                $("#test_item_id").html(content);
 
             });
         });
