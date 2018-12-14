@@ -46,6 +46,13 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="col-sm-2">
+                <form action="{{ route('testitem.destroy', $testItem->id) }} " method="POST">
+                        <input type="submit" value="Delete Test Item" class="btn btn-danger btn-block" onclick="return confirm('Are you sure to delete?')">
+                        <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                        {{ method_field('DELETE') }}
+                </form>
+            </div>
         </div>
     </div>
 </div>

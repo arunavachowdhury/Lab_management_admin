@@ -19,7 +19,7 @@ Route::resource('sample', 'SampleController')->middleware(['admin', 'director'])
 // Route::resource('isstandard', 'ISStandardController')->middleware(['admin', 'director']);
 Route::resource('testmethod', 'TestMethodController')->middleware(['admin', 'director']);
 Route::resource('testitem', 'TestItemController')->middleware(['admin', 'director']);
-// Route::resource('customer', 'CustomerController')->middleware('auth');
+Route::resource('customer', 'CustomerController')->middleware('auth');
 
 // Route::resource('test', 'TestController')->middleware('auth');
 // Route::get('/drafts', 'TestController@drafts')->middleware('auth')->name('test.drafts');

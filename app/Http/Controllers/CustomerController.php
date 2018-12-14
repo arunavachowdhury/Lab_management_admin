@@ -47,8 +47,7 @@ class CustomerController extends Controller
         $data = $request->all();
         $customer = Customer::create($data);
 
-        return redirect()->route('test.create');
-
+        return redirect()->route('customer.show', ['id' => $customer->id]);
     }
 
     /**
@@ -60,7 +59,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::findOrFail($id);
-        return view('customer.show')->with('customer', $customer);
+        return view('customer.show')->with('customer', $customer)->with(['tests' => $customer->tests]);
     }
 
     /**

@@ -2,7 +2,8 @@
 
 @section('content')
 
-<h1>{{$customer->name}}</h1>
+<h1>Customer name: {{$customer->name}}</h1>
 
+<h2>{{}}</h2>
 
 @endsection
