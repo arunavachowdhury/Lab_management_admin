@@ -49,10 +49,9 @@ class TestMethodController extends Controller
         
         $rule = [
             'sample_id' => 'required',
-            'test_items_id' => 'required',
+            'test_item_id' => 'required',
             'uom_id' => 'required',
             'name'=> 'required',
-            'price' => 'required|integer',
             'specified_range_from' => 'required',
             'specified_range_to' => 'required',
         ];

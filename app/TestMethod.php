@@ -8,7 +8,7 @@ class TestMethod extends Model
 {
     protected $fillable = [
                 'sample_id',
-                'test_items_id',
+                'test_item_id',
                 'uom_id',
                 'name',
                 'price',
