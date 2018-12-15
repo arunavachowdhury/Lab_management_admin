@@ -37,23 +37,26 @@ class UomController extends Controller
     {
         $this->validate($request, ['unit' => 'required']);
 
-        preg_match_all('/[a-z]+\^?-?([0-9]{1,10})?/', $request->unit, $output_array);
-        $unit = '';
-        foreach ($output_array[0] as $output) {
-            if(preg_match('/(?P<power>[0-9]{1,10})/', $output, $output_array_1)) {
-                $new_value = str_replace($output_array_1['power'], '', $output);
-                $new_value = str_replace("^", "<sup>".$output_array_1['power']."</sup>", $new_value);
-                $unit .= $new_value;
+        if (preg_match('/^[a-zA-Z]/', $request->unit, $out)) {
+            preg_match_all('/[a-zA-Z\/?]+\^?-?([0-9]{1,10})?/', $request->unit, $output_array);
+            $unit = '';
+            foreach ($output_array[0] as $output) {
+                if (preg_match('/(?P<power>(-)?[0-9]{1,10})/', $output, $output_array_1)) {
+                    $new_value = str_replace($output_array_1['power'], '', $output);
+                    $new_value = str_replace("^", "<sup>".$output_array_1['power']."</sup>", $new_value);
+                    $unit .= $new_value;
+                } else {
+                    $unit .= $output;
+                }
             }
-            else {
-                $unit .= $output;
-            }
+            $new_unit = Uom::create([
+                'unit' => $unit,
+            ]);
+        } else {
+            $new_unit = Uom::create([
+                'unit' => $request->unit,
+            ]);
         }
-
-
-        Uom::create([
-            'unit' => $unit,
-        ]);
 
         return redirect()->back();
     }
@@ -66,8 +69,8 @@ class UomController extends Controller
      */
     public function show($id)
     {
-       $unit = Uom::findOrFail($id);
-       return $unit->unit;
+        $unit = Uom::findOrFail($id);
+        return $unit->unit;
     }
 
     /**

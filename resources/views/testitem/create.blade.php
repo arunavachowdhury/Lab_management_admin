@@ -10,7 +10,7 @@ Add Test Item
     <div class="masonry-sizer col-md-12">
         <div class="masonry-item col-md-12" style="position: absolute; left: 0%; top: 0px;">
             <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">Add IS Standard to Sample/Product</h6>
+                <h6 class="c-grey-900">Add Test Item</h6>
                 <div class="mT-30">
                     @if ($errors->any())
                     <div class="alert alert-danger">

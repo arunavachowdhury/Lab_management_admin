@@ -9,7 +9,7 @@ Create Unit
 <div class="masonry-sizer col-md-12">
     <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 0px;">
         <div class="bgc-white p-20 bd"> 
-            <h6 class="c-grey-900">Add a Sample/Product</h6>
+            <h6 class="c-grey-900">Add a Unit of Measurement</h6>
             <div class="mT-30">
                 <form action="{{route('uom.store')}}" method="post">
                     {{csrf_field()}}

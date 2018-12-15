@@ -30,12 +30,12 @@
                     <li><a href="{{route('sample.index')}}">Product / Material of Test</a></li>
                     <li><a href="{{route('sample.create')}}">+ Add Product / Material of Test</a></li>
                     <li><a href="{{route('testitem.create')}}">+ Add Test Item to be performed</a></li>
-                    <li><a href="{{route('uom.create')}}">+ Add Unit Of Measurement for Tests</a></li>
                     <li><a href="{{route('testmethod.create')}}">+ Add Test Method</a></li>
+                    <li><a href="{{route('uom.create')}}">+ Add Unit Of Measurement for Tests</a></li>
                 </ul>
             </li>
             <!-- Lab -->
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder"><i class="c-blue-500 ti-files"></i></span>
                     <span class="title">Lab</span>
@@ -45,7 +45,7 @@
                     <li><a href="{{route('lab.index')}}"> Labs</a></li>
                     <li><a href="{{route('lab.create')}}"> +Add Lab </a></li>
                 </ul>
-            </li>
+            </li> --}}
             @endif
         </ul>
     </div>
